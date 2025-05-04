@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Moments | Memories with My People</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .photo-card {
+            transition: transform 0.3s ease;
+            aspect-ratio: 4/3;
+        }
+        .photo-card:hover {
+            transform: scale(1.03);
+        }
+        .photo-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+        }
+        .photo-card:hover .photo-overlay {
+            opacity: 1;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .video-wrapper {
+            transition: opacity 0.5s ease;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="bg-[#fafafa]">
+    <!-- Title Section -->
+    <header class="h-screen flex items-center justify-center bg-gradient-to-br from-[#ffecd2] to-[#fcb69f]">
+        <div class="text-center fade-in">
+            <h1 class="text-5xl md:text-7xl font-bold-italic text-black mb-4">Beautiful Moments of Us Three❤️</h1>
+            <p class="text-xl text-black/90">Scroll Down😇</p>
+        </div>
+    </header>
+
+    <!-- Photo Gallery -->
+    <section class="py-16 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-gray-700">College Days <br>(Hold Pic to download) </h2>
+            <div class="grid grid-cols-1 gap-4">
+                <!-- Photo Cards -->
+                <div class="photo-card rounded-lg overflow-hidden relative">
+                    <img src="1.jpg" loading="lazy" class="w-full h-full object-cover">
+                    <div class="photo-overlay absolute inset-0 p-4 flex items-end">
+                        <p class="text-white font-medium"> 😂 </p>
+                    </div>
+                </div>
+
+                <div class="photo-card rounded-lg overflow-hidden relative">
+                    <img src="2.jpg" loading="lazy" class="w-full h-full object-cover">
+                    <div class="photo-overlay absolute inset-0 p-4 flex items-end">
+                        <p class="text-white font-medium">Chasme wale in dono ke papa hain</p>
+                    </div>
+                </div>
+
+                <div class="photo-card rounded-lg overflow-hidden relative">
+                    <img src="profile.jpg" loading="lazy" class="w-full h-full object-cover">
+                    <div class="photo-overlay absolute inset-0 p-4 flex items-end">
+                        <p class="text-white font-medium">Imposter</p>
+                    </div>
+                </div>
+
+                <div class="photo-card rounded-lg overflow-hidden relative">
+                    <img src="3.jpg" loading="lazy" class="w-full h-full object-cover">
+                    <div class="photo-overlay absolute inset-0 p-4 flex items-end">
+                        <p class="text-white font-medium">Actual Photo</p>
+                    </div>
+                </div>
+
+                <div class="photo-card rounded-lg overflow-hidden relative">
+                    <img src="6.jpg" loading="lazy" class="w-full h-full object-cover">
+                    <div class="photo-overlay absolute inset-0 p-4 flex items-end">
+                        <p class="text-white font-medium">Jadoo</p>
+                    </div>
+                </div>
+
+                <div class="photo-card rounded-lg overflow-hidden relative">
+                    <img src="4.jpg" loading="lazy" class="w-full h-full object-cover">
+                    <div class="photo-overlay absolute inset-0 p-4 flex items-end">
+                        <p class="text-white font-medium">10 rupey plate, 10 rupey plate 🗣️</p>
+                    </div>
+                </div>
+
+                <div class="photo-card rounded-lg overflow-hidden relative">
+                    <img src="profile2.jpg" loading="lazy" class="w-full h-full object-cover">
+                    <div class="photo-overlay absolute inset-0 p-4 flex items-end">
+                        <p class="text-white font-medium">in dono ka papa</p>
+                    </div>
+                    
+                </div>
+                <div class="photo-card rounded-lg overflow-hidden relative">
+                    <img src="5.jpg" loading="lazy" class="w-full h-full object-cover">
+                    <div class="photo-overlay absolute inset-0 p-4 flex items-end">
+                        <p class="text-white font-medium">find the odd one out</p>
+                    </div>
+                </div>
+
+                <div class="photo-card rounded-lg overflow-hidden relative">
+                    <img src="7.jpg" loading="lazy" class="w-full h-full object-cover">
+                    <div class="photo-overlay absolute inset-0 p-4 flex items-end">
+                        <p class="text-white font-medium">Hold and preview the picture</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="py-16 px-4 md:px-8 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-gray-700">Adventure Clips <br> (Hold video to download) </h2>
+            <div class="space-y-12">
+                <!-- Video Cards with Controls -->
+                <div class="video-wrapper opacity-75 rounded-xl overflow-hidden shadow-lg">
+                    <video loop playsinline class="w-full aspect-video object-cover" data-src="2a.mp4"></video>
+                    <div class="video-controls absolute bottom-2 right-2 flex gap-2">
+                        <button onclick="toggleMute(this)" class="bg-black/50 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">🔊</button>
+                        <button onclick="togglePause(this)" class="bg-black/50 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">⏸️</button>
+                    </div>
+                </div>
+
+                <div class="video-wrapper opacity-75 rounded-xl overflow-hidden shadow-lg">
+                    <video loop playsinline class="w-full aspect-video object-cover" data-src="1a.mp4"></video>
+                    <div class="video-controls absolute bottom-2 right-2 flex gap-2">
+                        <button onclick="toggleMute(this)" class="bg-black/50 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">🔊</button>
+                        <button onclick="togglePause(this)" class="bg-black/50 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">⏸️</button>
+                    </div>
+                </div>
+
+                <div class="video-wrapper opacity-75 rounded-xl overflow-hidden shadow-lg">
+                    <video loop playsinline class="w-full aspect-video object-cover" data-src="3a.mp4"></video>
+                    <div class="video-controls absolute bottom-2 right-2 flex gap-2">
+                        <button onclick="toggleMute(this)" class="bg-black/50 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">🔊</button>
+                        <button onclick="togglePause(this)" class="bg-black/50 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">⏸️</button>
+                    </div>
+                </div>
+
+                <div class="video-wrapper opacity-75 rounded-xl overflow-hidden shadow-lg">
+                    <video loop playsinline class="w-full aspect-video object-cover" data-src="4a.mp4"></video>
+                    <div class="video-controls absolute bottom-2 right-2 flex gap-2">
+                        <button onclick="toggleMute(this)" class="bg-black/50 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">🔊</button>
+                        <button onclick="togglePause(this)" class="bg-black/50 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">⏸️</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top -->
+    <button id="toTop" class="fixed bottom-8 right-8 p-3 bg-white rounded-full shadow-lg opacity-0 transition-opacity">
+        ↑
+    </button>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop class="hidden">
+        <source src="idk_likh.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Video control functions
+        function toggleMute(button) {
+            const video = button.closest('.video-wrapper').querySelector('video');
+            video.muted = !video.muted;
+            button.textContent = video.muted ? '🔇' : '🔊';
+        }
+
+        function togglePause(button) {
+            const video = button.closest('.video-wrapper').querySelector('video');
+            if (video.paused) {
+                video.play();
+                button.textContent = '⏸️';
+            } else {
+                video.pause();
+                button.textContent = '▶️';
+            }
+        }
+
+        // Initialize videos
+        document.querySelectorAll('video').forEach(video => {
+            video.muted = true;
+            video.src = video.dataset.src;
+            video.load();
+        });
+
+        // Intersection Observer for videos
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target.querySelector('video');
+                if (entry.isIntersecting) {
+                    video.play();
+                    entry.target.style.opacity = 1;
+                } else {
+                    video.pause();
+                    entry.target.style.opacity = 0.75;
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.video-wrapper').forEach(el => {
+            videoObserver.observe(el);
+        });
+
+        // Back to Top Button
+        const toTopButton = document.getElementById('toTop');
+        window.addEventListener('scroll', () => {
+            toTopButton.style.opacity = window.scrollY > 500 ? 1 : 0;
+        });
+        toTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Auto-play background music
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('bgMusic').play().catch(() => {
+                // Handle autoplay restrictions
+            });
+        });
+
+        // Lazy loading for images
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    </script>
+</body>
+</html> 

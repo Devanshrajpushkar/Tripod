@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #9B111E;
+            --secondary: #4A536B;
+            --accent: #95E1D3;
+            --background: #F7F7F7;
+            --text: #333333;
+            --light: #FFFFFF;
+            --dark: #222222;
+        }
+
+        [data-theme="dark"] {
+            --background: #222222;
+            --text: #F7F7F7;
+            --light: #333333;
+            --dark: #F7F7F7;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background-color: var(--background);
+            transition: all 0.3s ease;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            background-color: rgba(247, 247, 247, 0.9);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 15px 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            margin-left: 30px;
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .theme-toggle, .lang-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text);
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        .theme-toggle:hover, .lang-toggle:hover {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(255,154,139,0.1) 0%, rgba(149,225,211,0.1) 100%);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .intro {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-right: 15px;
+            margin-bottom: 15px;
+        }
+
+        .btn.primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn.secondary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .scroll-indicator i {
+            margin-top: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .about-image {
+            position: relative;
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .image-border {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--primary);
+            border-radius: 10px;
+            top: 20px;
+            left: 20px;
+            z-index: 1;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .skill-bars {
+            margin-top: 20px;
+        }
+
+        .skill {
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .bar {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Projects Section */
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-bottom: 50px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 154, 139, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover .overlay {
+            opacity: 1;
+        }
+
+        .view-btn {
+            padding: 10px 20px;
+            background-color: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .tags {
+            margin-top: 15px;
+        }
+
+        .tags span {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--secondary);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: flex;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+            background-color: var(--light);
+            color: var(--text);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 154, 139, 0.2);
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .info-card {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .info-card i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 20px;
+            margin-top: 5px;
+        }
+
+        .info-text h3 {
+            margin-bottom: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            background-color: var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: var(--light);
+            margin-top: 50px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--light);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .nav-links a {
+                margin: 15px 0;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .contact-content {
+                flex-direction: column;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                display: block;
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .cta-buttons {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        /* Language Toggle */
+        .lang-toggle-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lang-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover {
+            transform: translateY(-3px);
+            background-color: var(--secondary);
+        }
+        /* 360px Mobile Optimization */
+@media (max-width: 360px) {
+    .container {
+        width: 95%;
+        padding: 0 10px;
+    }
+
+    .hero {
+        height: auto;
+        padding: 100px 0 40px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+
+    .tagline {
+        font-size: 1.1rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .about-image {
+        max-width: 280px;
+    }
+
+    .image-border {
+        top: 15px;
+        left: 15px;
+    }
+
+    .project-image {
+        height: 180px;
+    }
+
+    .info-card i {
+        font-size: 1.2rem;
+        margin-right: 15px;
+    }
+
+    .lang-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 0.9rem;
+    }
+
+    footer p {
+        font-size: 0.8rem;
+    }
+
+    .nav-links {
+        top: 60px;
+    }
+
+    .hamburger {
+        font-size: 1.2rem;
+    }
+
+    .skill-name span:first-child {
+        font-size: 0.85rem;
+    }
+}
+
+/* Add these media queries at the end of existing styles */
+
+/* 480px and below */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .tagline {
+        font-size: 1.1rem;
+    }
+    
+    .about-image {
+        max-width: 280px;
+    }
+    
+    .project-image {
+        height: 200px;
+    }
+    
+    .contact-content {
+        gap: 30px;
+    }
+    
+    .info-card i {
+        font-size: 1.2rem;
+    }
+}
+
+/* 400px and below */
+@media (max-width: 400px) {
+    .container {
+        width: 95%;
+        padding: 0 10px;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .about-image img {
+        max-width: 260px;
+    }
+    
+    .image-border {
+        top: 15px;
+        left: 15px;
+    }
+    
+    .skill-name span {
+        font-size: 0.9rem;
+    }
+    
+    .project-info h3 {
+        font-size: 1.1rem;
+    }
+}
+
+/* 320px (Smallest mobile) */
+@media (max-width: 320px) {
+    .hero-content h1 {
+        font-size: 1.6rem;
+    }
+    
+    .tagline {
+        font-size: 0.95rem;
+    }
+    
+    .about-text p {
+        font-size: 0.9rem;
+    }
+    
+    .project-info p {
+        font-size: 0.9rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 12px;
+    }
+    
+    .lang-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Add these to existing mobile styles */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 0;
+    }
+    
+    .nav-links {
+        top: 70px;
+        padding: 15px 0;
+    }
+    
+    .nav-links a {
+        margin: 12px 0;
+    }
+    
+    .hero {
+        padding-top: 80px;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .about-content {
+        gap: 30px;
+    }
+    
+    .project-grid {
+        gap: 20px;
+    }
+    
+    .contact-info {
+        margin-top: 30px;
+    }
+}
+
+/* Add smooth transitions for scaling elements */
+.project-card,
+.btn,
+.social-links a {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ensure images don't overflow */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Improve touch targets */
+button,
+a,
+input,
+textarea {
+    touch-action: manipulation;
+}
+
+.btn {
+    min-width: 120px;
+    text-align: center;
+}
+
+/* Prevent horizontal overflow */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Add these corrections to your existing CSS */
+/* Base element adjustments */
+.btn {
+    box-sizing: border-box;
+    min-width: auto;
+    width: auto;
+}
+
+.project-card {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Improved Media Queries */
+@media (max-width: 768px) {
+    .hero {
+        height: auto;
+        padding: 120px 0 60px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+        line-height: 1.1;
+    }
+
+    .tagline {
+        font-size: 1.2rem;
+    }
+
+    .btn {
+        padding: 10px 25px;
+        font-size: 0.95rem;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .nav-links {
+        top: 65px;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .tagline {
+        font-size: 1.1rem;
+    }
+
+    .btn {
+        width: 100%;
+        margin-right: 0;
+        padding: 12px 20px;
+    }
+
+    .cta-buttons {
+        gap: 10px;
+    }
+
+    .about-image {
+        max-width: 100%;
+    }
+
+    .project-image {
+        height: 180px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero-content h1 {
+        font-size: 1.6rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+    }
+
+    .intro {
+        font-size: 0.95rem;
+    }
+
+    .skill-name span {
+        font-size: 0.85rem;
+    }
+
+    .project-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .project-info p {
+        font-size: 0.85rem;
+    }
+
+    .lang-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .tagline {
+        font-size: 0.95rem;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+
+    .about-text p {
+        font-size: 0.85rem;
+    }
+
+    .skill-name span {
+        font-size: 0.8rem;
+    }
+
+    .info-card i {
+        font-size: 1rem;
+        margin-right: 12px;
+    }
+
+    .social-links a {
+        width: 35px;
+        height: 35px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Add these new styles for better element containment */
+.container {
+    overflow-x: hidden;
+}
+
+.project-grid {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.contact-content {
+    gap: 30px;
+}
+
+.form-group input,
+.form-group textarea {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Navigation button spacing fix */
+.nav-links {
+    gap: 15px;
+}
+
+/* Ensure all images are contained */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Fix mobile menu positioning */
+.nav-links.active {
+    padding: 15px 0;
+    top: 60px;
+}
+
+/* Adjust scroll indicator position */
+.scroll-indicator {
+    bottom: 20px; /* Reduced from 30px */
+}
+
+@media (max-width: 768px) {
+    .scroll-indicator {
+        bottom: 15px;
+        transform: translateX(-50%) scale(0.9);
+    }
+    
+    .scroll-indicator span {
+        font-size: 0.8rem;
+    }
+    
+    .scroll-indicator i {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll-indicator {
+        bottom: 10px;
+    }
+    
+    .hero {
+        padding-bottom: 80px; /* Add space at bottom */
+    }
+}
+
+@media (max-width: 360px) {
+    .scroll-indicator {
+        bottom: 8px;
+    }
+    
+    .scroll-indicator span {
+        display: none; /* Hide text on smallest screens */
+    }
+    
+    .scroll-indicator i {
+        margin-top: 5px;
+    }
+}
+.about-image {
+    margin-left: 0px; /* Move right */
+    margin-right: 20px; /* Move left */
+    margin-top: 10px; /* Move down */
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Devansh Raj Pushkar</a>
+            <div class="nav-links">
+                <a href="#home" class="nav-link" data-en="Home" data-hi="होम">Home</a>
+                <a href="#about" class="nav-link" data-en="About" data-hi="परिचय">About</a>
+                <a href="#projects" class="nav-link" data-en="My Work" data-hi="मेरा काम">Projects</a>
+                <a href="#contact" class="nav-link" data-en="Contact" data-hi="संपर्क">Contact</a>
+                <button class="theme-toggle"><i class="fas fa-moon"></i></button>
+                <button class="lang-toggle" id="langToggle"><i class="fas fa-language"></i></button>
+            </div>
+            <button class="hamburger"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up">
+                <h1 data-en="Hello, I'm <span> Devansh Raj Pushkar</span>" data-hi="नमस्ते, मैं <span>देवांश राज पुष्कर</span> हूँ">Hello, I'm <span>Your Name</span></h1>
+                <p class="tagline" data-en="Don't know what else, but 🙂" data-hi="नहीं पता और क्या, लेकिन 🙂">Web Designer & Developer</p>
+                <p class="intro" data-en="I study Physics, build websites, and overthink everything. <br> This space is my personal universe - where science, art and life collide." data-hi="मैं भौतिकी का अध्ययन करता हूं, वेबसाइट बनाता हूं, और हर चीज पर गहराई से सोचता हूं। <br> यह स्थान मेरा निजी ब्रह्मांड है - जहां विज्ञान, कला और जीवन टकराते हैं।">Creating beautiful, functional digital experiences</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn primary" data-en="View My Work" data-hi="मेरा काम देखें">View My Work</a>
+                    <a href="#contact" class="btn secondary" data-en="Contact Me" data-hi="संपर्क करें">Contact Me</a>
+                </div>
+            </div>
+            <div class="scroll-indicator" onclick="document.querySelector('#about').scrollIntoView({behavior: 'smooth'})">
+                <span data-en="Scroll Down" data-hi="नीचे स्क्रॉल करें">Scroll Down</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 data-aos="fade-up" data-en="About Me" data-hi="मेरे बारे में">About Me</h2>
+            <div class="about-content">
+                <div class="about-image" data-aos="fade-right">
+                    <img src="profile2.jpg" alt="Your Name">
+                    <div class="image-border"></div>
+                </div>
+                <div class="about-text" data-aos="fade-left">
+                    <h3 data-en="Who I Am" data-hi="मैं कौन हूँ">Who I Am</h3>
+                    <p data-en="I'm a college student, currently in 2nd year, pursuing BSc Physics Hons from Delhi University (dont wanna disclose college name for security concerns🤪, btw you can contact me, I've attached links in the last). I love tech, I love to learn techy/electronic things. Love to listen Music and play E-games.😁
+                    If you want to know more about me, either fill your details or just click on my links to contact me.😇 I dont want to reveal everything for public.🙂" 
+                       data-hi="मैं एक कॉलेज स्टूडेंट हूँ, अभी दूसरे साल में हूँ, दिल्ली यूनिवर्सिटी से बीएससी फिजिक्स ऑनर्स कर रहा हूँ (सुरक्षा कारणों से कॉलेज का नाम नहीं बताना चाहता, वैसे आप मुझसे संपर्क कर सकते हैं, मैंने आखिरी में लिंक अटैच कर दिए हैं)। मुझे तकनीक पसंद है, मुझे तकनीकी/इलेक्ट्रॉनिक चीजें सीखना पसंद है। मुझे संगीत सुनना और ई-गेम खेलना पसंद है। 😁
+                        अगर आप मेरे बारे में और जानना चाहते हैं, तो या तो अपना विवरण भरें या मुझसे संपर्क करने के लिए मेरे लिंक पर क्लिक करें। 😇 मैं सब कुछ सार्वजनिक रूप से प्रकट नहीं करना चाहता। 🙂">
+                       I'm a passionate designer and developer with 5 years of experience creating digital experiences that users love. My approach combines aesthetic sensibility with technical expertise.
+                    </p>
+                    <br><br>
+                    <div class="skills">
+                        <h3 data-en="My Skills" data-hi="मेरे कौशल">My Skills</h3>
+                        <div class="skill-bars">
+                            <div class="skill">
+                                <div class="skill-name">
+                                    <span data-en="UI/UX Design🤌" data-hi="UI/UX डिज़ाइन">UI/UX Design</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="bar"><div class="progress" style="width: 90%"></div></div>
+                            </div>
+                            <div class="skill">
+                                <div class="skill-name">
+                                    <span data-en="Frontend Development🤗" data-hi="फ्रंटएंड डेवलपमेंट">Frontend Development</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="bar"><div class="progress" style="width: 85%"></div></div>
+                            </div>
+                            <div class="skill">
+                                <div class="skill-name">
+                                    <span data-en="Backend Development🥲 (nahi aata)" data-hi="नहीं आता ना">Graphic Design</span>
+                                    <span>0.1%</span>
+                                </div>
+                                <div class="bar"><div class="progress" style="width: 0.1%"></div></div>
+                            </div>
+                        </div>
+                    </div> <br>
+                    
+                    <a href="download.png" class="btn primary" download data-en="Download my picture if you want" data-hi="डाउनलोड">Download Resume</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 data-aos="fade-up" data-en="Things I've built with heart" data-hi="चीज़ें जो मैंने दिल से बनाई हैं">My Projects</h2>
+            <p class="section-description" data-aos="fade-up" data-en="A selection of my recent work" data-hi="मेरे हाल के काम का चयन">A selection of my recent work</p>
+            
+            <div class="project-grid">
+                <!-- Project 1 -->
+                <div class="project-card" data-aos="fade-up">
+                    <div class="project-image">
+                        <img src="profile.jpg" alt="Project 1">
+                        <div class="overlay">
+                            <a href="https://devanshrajpushkar.github.io/4pageswebsite/" class="view-btn" data-en="Open" data-hi="खोलो">View Details</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 data-en="My First Website" data-hi="मेरी पहली वेबसाइट">E-Commerce Website</h3>
+                        <p data-en="Open in landscape mode🙂" 
+                           data-hi="लैंडस्केप मोड में खोलें.">
+                           Fully responsive online store with custom CMS integration
+                        </p>
+                        <div class="tags">
+                            <span data-en="Web Design" data-hi="वेब डिज़ाइन">Web Design</span>
+                            <span data-en="Development" data-hi="डेवलपमेंट">Development</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-image">
+                        <img src="profile.jpg" alt="Project 2">
+                        <div class="overlay">
+                            <a href="friends.html" class="view-btn" data-en="View" data-hi="देखें">View Details</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 data-en="My Friends 🙂" data-hi="मेरे दोस्त 🙂">Mobile App UI</h3>
+                        <p data-en="We 3 Idiots, Click to see us" 
+                           data-hi="हम तीन बेवकूफ़ 😂">
+                           Fitness tracking application with custom illustrations
+                        </p>
+                        <div class="tags">
+                            <span data-en="Roshan" data-hi="रोशन">UI/UX</span>
+                            <span data-en="Devansh" data-hi="देवांश">Mobile</span>
+                            <span data-en="Abhay" data-hi="अभय">Mobile</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-image">
+                        <img src="profile.jpg" alt="Project 3">
+                        <div class="overlay">
+                            <a href="quiet.html" class="view-btn" data-en="View" data-hi="देखें">View Details</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 data-en="Quiet Corners of My Mind" data-hi="मेरे मन के शांत कोने">Brand Identity</h3>
+                        <p data-en="A place for my Emotional & Poetic Notes, Photos and Nostalgic Moments." 
+                           data-hi="मेरे भावनात्मक और काव्यात्मक नोट्स, फ़ोटो और पुराने पलों के लिए एक जगह।">
+                           Complete branding package for a startup company
+                        </p>
+                        <div class="tags">
+                            <span data-en="Notes" data-hi="नोट्स">Graphic Design</span>
+                            <span data-en="Nostalgia" data-hi="उदासी">Branding</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 data-aos="fade-up" data-en="Get In Touch" data-hi="संपर्क करें">Get In Touch</h2>
+            <p class="section-description" data-aos="fade-up" data-en="I'd love to know about you 😇, but since I dont know Backend, form will not be submitted, instead text me on my social media, given at the bottom of the page." data-hi="मुझे आपके बारे में जानना अच्छा लगेगा😇, लेकिन चूंकि मुझे Backend का पता नहीं है, इसलिए फॉर्म जमा नहीं किया जाएगा, इसके बजाय मुझे मेरे सोशल मीडिया पर टेक्स्ट करें, जो page के नीचे दिया गया है।">I'd love to hear about your project</p>
+            
+            <div class="contact-content">
+                <div class="contact-form" data-aos="fade-right">
+                    <form action="https://formspree.io/f/mdkgevyk" method="POST"  >
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required data-en-placeholder="Your Name" data-hi-placeholder="आपका नाम">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Instagram or Phone No." required data-en-placeholder="Your Email" data-hi-placeholder="आपका ईमेल">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required data-en-placeholder="Your Message" data-hi-placeholder="आपका संदेश"></textarea>
+                        </div>
+                        <button type="submit" class="btn primary" data-en="Send Message" data-hi="संदेश भेजें">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info" data-aos="fade-left">
+                    <div class="info-card">
+                        <i class="fas fa-envelope"></i>
+                        <div class="info-text">
+                            <h3 data-en="Email" data-hi="ईमेल">Email</h3>
+                            <p>ifyr962518@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-phone"></i>
+                        <div class="info-text">
+                            <h3 data-en="Phone" data-hi="फोन">Phone</h3>
+                            <p>+91-90277XXXXX 😂</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="info-text">
+                            <h3 data-en="Location" data-hi="स्थान">Location</h3>
+                            <p data-en="North Campus, DU" data-hi="नॉर्थ कैंपस, DU">San Francisco, CA</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/devansh_raj_pushkar/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/9027738276"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.facebook.com/rajatrajpushkar.mr.r"><i class="fab fa-facebook"></i></a>
+                        <a href="https://github.com/Devanshrajpushkar"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p data-en=" Above is my Instagram, Whatsapp, Facebook and Github. <br> Devansh Raj Pushkar" data-hi="ऊपर मेरा इंस्टाग्राम, व्हाट्सएप, फेसबुक और गिटहब है। <br> देवांश राज पुष्कर ">© 2023 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Language Toggle Button -->
+    <div class="lang-toggle-container">
+        <button class="lang-btn" id="hindiBtn">हिंदी</button>
+        <button class="lang-btn" id="englishBtn">English</button>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate On Scroll) library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Dark/light mode toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        themeToggle.addEventListener('click', function() {
+            document.body.setAttribute('data-theme', 
+                document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            
+            // Change icon
+            const icon = this.querySelector('i');
+            if (document.body.getAttribute('data-theme') === 'dark') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+
+        // Project hover effect
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.querySelector('.overlay').style.opacity = '1';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.querySelector('.overlay').style.opacity = '0';
+            });
+        });
+
+        // Language Toggle Functionality
+        let currentLang = 'en';
+
+        function updateContent(lang) {
+            // Update navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.textContent = link.getAttribute(`data-${lang}`);
+            });
+
+            // Update all elements with data attributes
+            document.querySelectorAll('[data-en], [data-hi]').forEach(element => {
+                if (element.hasAttribute(`data-${lang}`)) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = element.getAttribute(`data-${lang}-placeholder`);
+                    } else {
+                        element.innerHTML = element.getAttribute(`data-${lang}`);
+                    }
+                }
+            });
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+        }
+
+        // Set up language toggle buttons
+        document.getElementById('hindiBtn').addEventListener('click', function() {
+            currentLang = 'hi';
+            updateContent(currentLang);
+        });
+
+        document.getElementById('englishBtn').addEventListener('click', function() {
+            currentLang = 'en';
+            updateContent(currentLang);
+        });
+
+        // Initialize with English
+        updateContent(currentLang);
+    </script>
+</body>
+</html>
